@@ -35,7 +35,10 @@ quieras mirar (`?view=list` para la vista de lista).
 | Desinstalar | `agentarium uninstall` — quita servicio, hooks y binario; **nunca** borra `~/.agentarium/` (tu decoración y config sobreviven a una reinstalación). Borrarla es manual y opcional: `rm -rf ~/.agentarium` |
 
 Gateways OpenClaw remotos (Docker, otra máquina, tailnet) — el gateway LOCAL se detecta
-solo; los remotos se registran con un comando. El token es el `gateway.auth.token` del
+solo, y los remotos ANUNCIADOS en la red (bind lan/tailnet) también se descubren solos:
+salen en `● fuentes` como «descubierto» con el comando listo para pegarle el token (sin
+token no hay lectura — es la auth del propio OpenClaw). Lo que no se anuncia (p. ej.
+un gateway dentro de Docker) se registra a mano: El token es el `gateway.auth.token` del
 `openclaw.json` de ESA máquina, y su puerto debe ser alcanzable desde la tuya (en
 Docker: puerto publicado; en LAN/tailnet: `gateway.bind: "lan"`/`"tailnet"` allá):
 
