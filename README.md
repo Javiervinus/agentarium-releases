@@ -19,11 +19,16 @@ Windows: descarga `agentarium-windows-x64.exe` del último release y ejecútalo
 
 ## Después
 
+Corre en segundo plano como servicio de tu sesión; abre `http://127.0.0.1:4517` cuando
+quieras mirar (`?view=list` para la vista de lista).
+
 | Quiero… | Comando |
 |---|---|
-| Actualizar | `agentarium update` (la web también avisa cuando hay versión nueva) |
+| Saber cómo está | `agentarium status` |
+| Apagarlo sin desinstalar / encenderlo / reiniciarlo | `agentarium stop` / `agentarium start` / `agentarium restart` |
+| Actualizar | Solo: el daemon revisa cada hora, se actualiza y reinicia (la web muestra la versión y se recarga). Con prisa: `agentarium update`. Para decidir tú: `agentarium install-service --no-auto-update` |
 | Ver mis gateways OpenClaw de otras máquinas | crea `~/.agentarium/openclaw-gateways.json` — ver abajo |
-| Que no arranque solo | `agentarium uninstall-service` |
+| Que no arranque con la sesión | `agentarium uninstall-service` (vuelve con `install-service`) |
 | Quitar los hooks | `agentarium uninstall-hooks` |
 | Desinstalar todo | `agentarium uninstall-service; agentarium uninstall-hooks; rm ~/.local/bin/agentarium; rm -rf ~/.agentarium` |
 
