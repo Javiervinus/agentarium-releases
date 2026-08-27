@@ -27,18 +27,27 @@ quieras mirar (`?view=list` para la vista de lista).
 | Saber cómo está | `agentarium status` |
 | Apagarlo sin desinstalar / encenderlo / reiniciarlo | `agentarium stop` / `agentarium start` / `agentarium restart` |
 | Actualizar | Solo: el daemon revisa cada hora, se actualiza y reinicia (la web muestra la versión y se recarga). Con prisa: `agentarium update`. Para decidir tú: `agentarium install-service --no-auto-update` |
-| Ver mis gateways OpenClaw de otras máquinas | crea `~/.agentarium/openclaw-gateways.json` — ver abajo |
+| Ver mis gateways OpenClaw de otras máquinas | `agentarium gateways add …` — ver abajo |
+| Diagnosticar un gateway que no aparece | `agentarium gateways` (prueba cada conexión y muestra el error); en la web, `● N fuentes` en la vista de lista |
 | Abrirlo desde el teléfono (tailnet propia) | `agentarium install-service --host tailscale` → `http://<ip-tailscale>:4517` |
 | Que no arranque con la sesión | `agentarium uninstall-service` (vuelve con `install-service`) |
 | Quitar los hooks | `agentarium uninstall-hooks` |
 | Desinstalar | `agentarium uninstall` — quita servicio, hooks y binario; **nunca** borra `~/.agentarium/` (tu decoración y config sobreviven a una reinstalación). Borrarla es manual y opcional: `rm -rf ~/.agentarium` |
 
-Gateways OpenClaw remotos (Docker, otra máquina, tailnet) — el puerto del gateway debe
-ser alcanzable y el token es el `gateway.auth.token` de su `openclaw.json`:
+Gateways OpenClaw remotos (Docker, otra máquina, tailnet) — el gateway LOCAL se detecta
+solo; los remotos se registran con un comando. El token es el `gateway.auth.token` del
+`openclaw.json` de ESA máquina, y su puerto debe ser alcanzable desde la tuya (en
+Docker: puerto publicado; en LAN/tailnet: `gateway.bind: "lan"`/`"tailnet"` allá):
 
-```json
-{ "gateways": [ { "name": "softwerista", "url": "ws://192.168.1.20:18789", "token": "…" } ] }
+```sh
+agentarium gateways add ws://192.168.1.20:18789 --name softwerista --token '<token>'
+agentarium gateways    # lista todos y prueba la conexión de cada uno
 ```
+
+La vista de lista además muestra crons de cada gateway, alertas (agente caído/colgado,
+cron sin entrega, fuente con error — con aviso nativo del sistema, nada hacia afuera) y
+el consumo ≈$ por sesión de Claude Code (equivalente a tarifa API, para comparar; no es
+factura).
 
 ## Qué toca en tu máquina
 
