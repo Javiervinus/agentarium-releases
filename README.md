@@ -28,6 +28,7 @@ quieras mirar (`?view=list` para la vista de lista).
 | Apagarlo sin desinstalar / encenderlo / reiniciarlo | `agentarium stop` / `agentarium start` / `agentarium restart` |
 | Actualizar | Solo: el daemon revisa cada hora, se actualiza y reinicia (la web muestra la versión y se recarga). Con prisa: `agentarium update`. Para decidir tú: `agentarium install-service --no-auto-update` |
 | Ver mis gateways OpenClaw de otras máquinas | crea `~/.agentarium/openclaw-gateways.json` — ver abajo |
+| Abrirlo desde el teléfono (tailnet propia) | `agentarium install-service --host tailscale` → `http://<ip-tailscale>:4517` |
 | Que no arranque con la sesión | `agentarium uninstall-service` (vuelve con `install-service`) |
 | Quitar los hooks | `agentarium uninstall-hooks` |
 | Desinstalar | `agentarium uninstall` — quita servicio, hooks y binario; **nunca** borra `~/.agentarium/` (tu decoración y config sobreviven a una reinstalación). Borrarla es manual y opcional: `rm -rf ~/.agentarium` |
