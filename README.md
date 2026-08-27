@@ -30,7 +30,7 @@ quieras mirar (`?view=list` para la vista de lista).
 | Ver mis gateways OpenClaw de otras máquinas | crea `~/.agentarium/openclaw-gateways.json` — ver abajo |
 | Que no arranque con la sesión | `agentarium uninstall-service` (vuelve con `install-service`) |
 | Quitar los hooks | `agentarium uninstall-hooks` |
-| Desinstalar todo | `agentarium uninstall-service; agentarium uninstall-hooks; rm ~/.local/bin/agentarium; rm -rf ~/.agentarium` |
+| Desinstalar | `agentarium uninstall` — quita servicio, hooks y binario; **nunca** borra `~/.agentarium/` (tu decoración y config sobreviven a una reinstalación). Borrarla es manual y opcional: `rm -rf ~/.agentarium` |
 
 Gateways OpenClaw remotos (Docker, otra máquina, tailnet) — el puerto del gateway debe
 ser alcanzable y el token es el `gateway.auth.token` de su `openclaw.json`:
